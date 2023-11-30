@@ -50,6 +50,17 @@ impl MultiSet {
         }
     }
 
+    pub fn remove_set(&mut self, item: usize) -> Option<usize> {
+        if self.set.contains(&item) {
+            self.set.remove(&item);
+            let cnt = self.counter.remove(&item).unwrap();
+            self.count -= cnt;
+            Some(item)
+        } else {
+            None
+        }
+    }
+
     pub fn len(&self) -> usize {
         self.count
     }
